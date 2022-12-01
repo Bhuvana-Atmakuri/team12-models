@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--aos library-->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!--custom css link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <meta charset="UTF-8">
+    <title>Welcome to Aaharam</title>
+   {% load static %}
+<link rel='stylesheet' href="{% static 'preorder.css' %}">
+<style>
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+/* Hide the images by default */
+
+#slider {
+  position: relative;
+  width: 1190px;
+  height:382px;
+
+  overflow: hidden;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+}
+#slider ul {
+  position: relative;
+  list-style: none;
+  height: 100%;
+  width: 10000%;
+  padding: 0;
+  margin: 0;
+  transition: all 750ms ease;
+  left: 0;
+}
+#slider ul li {
+  position: relative;
+  height: 100%;
+
+  float: left;
+}
+#slider ul li img{
+  width: 684px;
+  height: 382px;
+}
+
+#slider #prev, #slider #next {
+  width: 50px;
+  line-height: 50px;
+  border-radius: 50%;
+  font-size: 2rem;
+  text-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+  text-align: center;
+  color: white;
+  text-decoration: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: all 150ms ease;
+}
+#slider #prev:hover, #slider #next:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+  text-shadow: 0;
+}
+#slider #prev {
+  left: 10px;
+}
+#slider #next {
+  right: 10px;
+}
+  </style>
+</head>
+
+<body id="bg" style="background-color:#FFFDD0;">
+
+<header>
+<div class="container">
+    <a href="#" class="h1">Aaharam   &#127835</a>
+    <nav class="navigation bar">
+    <ul class="unordered">
+        <li><a href="">Home</a></li>
+        <li><a href="">Help</a></li>
+        <li><a href=" ">Login/Signup</a></li>
+    </ul>
+    </nav>
+</div>
+</header>
+
+
+<center>
+ <!-- Slideshow container -->
+<div class="home">
+  <div id="slider">
+    <ul id="slideWrap">
+        <li>
+          <div class="coll">
+
+          <img src="{%static 'order.jpg' %}" alt="">
+          <div class="tex">
+              <h1 class="h1">Order now</h1>
+              <br>
+              <br>
+              <p class="para" style="color:purple">Why starve? when you have us</p>
+              <br>
+              <p class="para" style="color:red;font-size:26px;margin-left:15px;">Foods right in front of your doorstep<span style='font-size:60px;'>&#128757;</span></p>
+          </div>
+          </div>
+      </li>
+       <li>
+           <div class="coll">
+
+           <img src="{%static 'dine.jpg' %}" alt="">
+               <div class="tex">
+              <h1 class="h1">Dine In</h1>
+              <br>
+              <br>
+              <p class="para" style="color:purple">Want to go Hangout?<span style='font-size:40px;'>&#128512;</span></p>
+              <br>
+              <p class="para" style="color:red;font-size:26px;margin-left:15px;">Explore Restaurants Around You<span style='font-size:50px;'>&#127976;</span></p>
+          </div>
+           </div>
+       </li>
+        <li>
+           <div class="coll">
+
+           <img src="{%static 'poor.jpg' %}" alt="">
+               <div class="tex">
+              <h1 class="h1">Donate Us</h1>
+              <br>
+              <br>
+              <p class="para" style="color:purple">Want to go Hangout?<span style='font-size:40px;'>&#128512;</span></p>
+              <br>
+              <p class="para" style="color:red;font-size:26px;margin-left:15px;">Explore Restaurants Around You<span style='font-size:50px;'>&#127976;</span></p>
+          </div>
+           </div>
+       </li>
+
+    </ul>
+    <a id="prev" href="#">&#10094;</a>
+    <a id="next" href="#">&#10095;</a>
+  </div>
+
+</div>
+
+</div>
+</center>
+
+<br>
+<br>
+<br>
+<div class="bo" style="display:flex;">
+    <div class="orde" >
+        <div class="ima12"><a href="orderin"><img style="border-radius:20px;" src="{%static 'biry.jpg' %}"></a></div>
+
+    </div>
+    <div class="b123">
+        <div class="ima1234"><a href="orderin"><img src="{%static 'di.jpg' %}" style="border-radius:22px;"></a></div>
+
+    </div>
+</div>
+<br>
+<footer style="background-color:#000033;" class="footer">
+<h3>Quick Links</h3>
+    <br>
+<br>
+ <div class="column">
+
+
+<p>Company</p>
+     <br>
+     <br>
+
+                <ul style="list-style-type:disc">
+                    <li><a href="#" style="color:white;">About Us</a></li>
+                    <br>
+                    <br>
+                    <br>
+                    <li><a href="#" style="color:white;">Privacy Policy</a></li>
+                    <br>
+                    <br>
+                    <br>
+                    <li><a href="#" style="color:white;">Contact Us</a></li>
+                    <br>
+                    <br>
+                </ul>
+            </div>
+
+            <div class="column">
+
+
+<p>For Restaurants</p>
+<br><br>
+
+                <ul>
+                    <li><a href="#" style="color:white;">Partner With Us</a></li><br><br>
+                    <li><a href="#" style="color:white;">Apps For You</a></li><br><br>
+                    <li><a href="#" style="color:white;">Languages</a></li><br><br>
+
+                </ul>
+            </div>
+
+            <div class="column">
+
+
+<p>Social Links</p>
+<br><br>
+
+                <ul>
+
+                    <li><a href="#" class="fa fa-facebook" style="font-size:30px;"></a>
+                          <a href="#" class="fa fa-twitter" style="font-size:30px;"></a>
+                          <a href="#" class="fa fa-linkedin" style="font-size:30px;"></a>
+                          <a href="#" class="fa fa-youtube" style="font-size:30px;"></a>
+                          <a href="#" class="fa fa-instagram" style="font-size:30px;"></a></li>
+                </ul>
+            </div>
+
+</footer>
+  <script>
+        var responsiveSlider = function() {
+
+var slider = document.getElementById("slider");
+var sliderWidth = slider.offsetWidth;
+var slideList = document.getElementById("slideWrap");
+var count = 1;
+var items = slideList.querySelectorAll("li").length;
+var prev = document.getElementById("prev");
+var next = document.getElementById("next");
+
+window.addEventListener('resize', function() {
+  sliderWidth = slider.offsetWidth;
+});
+
+var prevSlide = function() {
+  if(count > 1) {
+    count = count - 2;
+    slideList.style.left = "-" + count * sliderWidth + "px";
+    count++;
+  }
+  else if(count = 1) {
+    count = items - 1;
+    slideList.style.left = "-" + count * sliderWidth + "px";
+    count++;
+  }
+};
+
+var nextSlide = function() {
+  if(count < items) {
+    slideList.style.left = "-" + count * sliderWidth + "px";
+    count++;
+  }
+  else if(count = items) {
+    slideList.style.left = "0px";
+    count = 1;
+  }
+};
+
+next.addEventListener("click", function() {
+  nextSlide();
+});
+
+prev.addEventListener("click", function() {
+  prevSlide();
+});
+
+setInterval(function() {
+  nextSlide()
+}, 5000);
+
+};
+
+window.onload = function() {
+responsiveSlider();
+}
+
+
+  </script>
+
+<!--aos js script-->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<!---INITIALIZE AOS:-->
+<script>
+ AOS.init();
+</script>
+
+</body>
+</html>

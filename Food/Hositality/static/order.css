@@ -1,0 +1,393 @@
+*{
+   padding:0px;
+   margin:0;
+   text-decoration:none;
+   border:border-box;
+   box-sizing:none;
+   list-style:none;
+   outline:none;
+   font-family:'Poppins';
+   color:black;
+   }
+   :root{
+   --orange:rgb(241,159,7);
+   --black:rgb(0,0,0);
+   --lightgrey:rgb(248,248,248);
+   }
+
+    .h1 {
+            color:red;
+            -webkit-text-fill-color: red; /* Will override color (regardless of order) */
+            -webkit-text-stroke-width: 1px;
+            -webkit-text-stroke-color: black;
+            font-size: 60px;
+        font-family: Copperplate, Papyrus, fantasy;
+        margin-left:30px;
+      text-shadow: 2px 2px 5px pink;
+         }
+
+
+         h2{
+         font-size:40px;
+         font-family:Copperplate, Papyrus, fantasy;
+         animation:shadow 3s linear infinite;
+         }
+         h4{
+         font-size:30px;
+         font-family:Copperplate, Papyrus, fantasy;
+         animation:shadow 3s linear infinite;
+         }
+
+
+         .b1{
+         padding:10px;
+         background-color:orange;
+         color:white;
+         font-weight:bold;
+         width:200px;
+         font-size:20px;
+         margin-left:150px;
+         margin-top:20px;
+         border-radius:1em;
+         }
+
+         .footer{
+         margin-top:auto;
+         height:400px;
+         width: 1600px;
+         text-decoration:none;
+
+         }
+
+        .fa-instagram {
+  background: #125688;
+  color: white;
+  margin-right:20px;
+
+}
+
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+   margin-right:20px;
+}
+
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+   margin-right:20px;
+}
+.fa-linkedin {
+  background: #007bb5;
+  color: white;
+   margin-right:20px;
+}
+
+.fa-youtube {
+  background: #bb0000;
+  color: white;
+   margin-right:20px;
+}
+
+         .column {
+                float: left;
+                width: 27%;
+               height: 300px;
+            }
+           h3{
+            color:white;
+            }
+            ul li{
+            color:white;
+            }
+            p {
+                font-size:20px;
+                font-weight:bold;
+                color:white;
+            }
+         h3{
+         font-size:30px;
+         margin-top:50px;
+         }
+         .b1:hover{
+         background-color:white;
+         color:orange;
+       }
+     .unordered{
+     display:flex;
+     }
+     .unordered li{
+     margin-right:30px;
+     margin-left:40px;
+     margin-top:10px;
+     font-size:20px;
+     }
+     ul a:hover{
+     color:orange;
+     border-bottom:1px solid orange;
+
+     }
+    header
+    {
+    position:fixed;
+    top:0;
+    width:100%;
+    align-items:center;
+    z-index:2;
+    }
+    .container{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:1px;
+    background-color:white;
+    }
+     .bg{
+          background-size: 40%;
+          background-repeat: no-repeat;
+          background-position: right;
+          background-attachment: fixed;
+         }
+    .para{
+    font-size:25px;
+    }
+
+.f1{
+align-items:center;
+justify-content:space-around;
+flex-wrap:wrap;
+margin-top:130px;
+background-color:black;
+color:white;
+position: sticky;
+top:0;
+z-index: 2;
+pointer-events: none;
+height:230px;
+margin-bottom:40px;
+}
+.f2{
+display:flex;
+
+}
+.i2{
+
+margin-top:13px;
+}
+.i1{
+
+margin-top:30px;
+}
+.head{
+text-align:center;
+
+}
+.hea{
+color:white;
+margin-left:130px;
+margin-top:20px;
+font-size:43px;
+}
+.hea1{
+color:white;
+margin-left:130px;
+font-size:20px;
+}
+
+
+.in1{
+ display: grid;
+  grid-template-columns:450px 450px 450px;
+
+
+}
+
+.i1{
+transition: transform .5s ease;
+
+}
+.i1:hover{
+  transform: scale(0.9);
+}
+.ho1{
+margin-left:120px;
+font-family:Cooper;
+
+}
+  #searchbar{
+     margin-left: 15%;
+     padding:15px;
+     border-radius: 10px;
+     font-size:20px;
+   }
+
+   input[type=text] {
+      width: 70%;
+      }
+
+.cart-row{
+display:flex;
+font-size:15px;
+}
+.content-section {
+    margin: 1em;
+}
+
+.container1 {
+    max-width: 900px;
+    margin: 101px;
+    padding: 0 1.5em;
+}
+.section-header {
+    font-family: "Metal Mania";
+    font-weight: normal;
+    color: #333;
+    text-align: center;
+    font-size: 2.5em;
+}
+
+.cart-item {
+    width: 45%;
+}
+.cart-column {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid black;
+    margin-right: 1.5em;
+    padding-bottom: 10px;
+    margin-top: 10px;
+}
+
+.cart-item-title {
+    color: #333;
+    margin-left: .5em;
+    font-size: 1.2em;
+}
+
+.cart-item-image {
+    width: 75px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.cart-price {
+    width: 20%;
+    font-size: 1.2em;
+    color: #333;
+}
+.cart-quantity {
+    width: 35%;
+}
+.btn {
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+}
+.btn-danger {
+     color: white;
+    background-color: #EB5757;
+    border: none;
+    border-radius: .3em;
+    font-weight: bold;
+    height:30px;
+}
+
+.btn-danger:hover {
+    background-color: #CC4C4C;
+}
+.cart-quantity-input {
+    height: 34px;
+    width: 50px;
+    border-radius: 5px;
+    border: 1px solid #56CCF2;
+    background-color: #eee;
+    color: #333;
+    padding: 0;
+    text-align: center;
+    font-size: 1.2em;
+    margin-right: 25px;
+}
+.cart-total-title {
+    font-weight: bold;
+    font-size: 1.5em;
+    color: black;
+    margin-right: 20px;
+}
+.cart-total-price {
+    color: #333;
+    font-size: 1.1em;
+}
+.btn-purchase {
+    display: block;
+    margin: 40px auto 80px auto;
+    font-size: 1.75em;
+}
+.shop-item-details {
+    display: flex;
+    align-items: center;
+    margin-bottom:20px;
+}
+
+.shop-item-price {
+
+    color: black;
+    margin-bottom:15px;
+
+}
+.btn-primary {
+    color: white;
+    background-color: #56CCF2;
+    border: none;
+
+
+}
+.shop-item-title {
+
+    text-align: center;
+    font-weight: bold;
+    margin-left:70px;
+}
+.btn-danger:hover {
+    background-color: #CC4C4C;
+}
+
+.navbar-toggler {
+  outline: none !important;
+
+}
+.toggler-icon {
+  font-size: 30px;
+
+
+}
+.bh1{
+   display: grid;
+  grid-template-columns: 450px 450px 450px;
+  padding: 30px;
+  grid-row-gap: 50px;
+  margin:10px;
+
+
+}
+
+
+.v1 {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(255, 99, 71, 0.5);
+  background-color:white;
+  max-width:650px;
+  height:510px;
+  text-align: center;
+  font-family: arial;
+}
+.price {
+  color: grey;
+  font-size: 30px;
+}
+
+/* On mouse-over, add a deeper shadow */
+
+
+/* Add some padding inside the card container */
+
+

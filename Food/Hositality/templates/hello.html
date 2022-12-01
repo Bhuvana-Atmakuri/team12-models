@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Food</title>
+
+     {% load static %}
+
+    <link rel='stylesheet' href="{% static 'hello.css' %}">
+    <!---font awesome cdn-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+    <!--aos library-->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!--custom css link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body style="background-color:#FFFDD0;">
+ <header>
+
+<div class="container">
+    <a href="#" class="h1">Aaharam   &#127835</a>
+    <nav class="navigation bar">
+    <ul class="unordered">
+        <li><a href=" ">Home</a></li>
+        <li><a href="About">Recipies</a></li>
+        <li><a href="con">Cart</a></li>
+        <li><a href="lo2">Help</a></li>
+        <li><a href="lo1">Account</a></li>
+    </ul>
+    </nav>
+</div>
+</header>
+
+
+
+{%for c in cat%}
+<div class="bh2">
+  <h1 class="ho1" style="margin-top:100px;margin-bottom:20px;margin-left:30px;"> {{c}}</h1>
+<div class="bh1">
+
+    {%for n in no%}
+    {%if n.catego == c %}
+    <div class="v1" style="margin-right:100px;">
+        <div class="i1" >
+            <a href="hackathon/{{n.id}}" class="o1"><img style="height:300px;width:100%;" src="{{n.image.url}}"></a>
+        </div>
+        <br>
+        <br>
+        <div class="i1">
+            <h1 >{{n.hotelname}}</h1>
+        </div>
+    </div>
+ {%endif%}
+    {%endfor%}
+</div>
+</div>
+
+ {%endfor%}
+
+<footer style="background-color:#000033;" class="footer">
+<h3>Quick Links</h3>
+    <br>
+<br>
+ <div class="column">
+
+
+<p>Company</p>
+     <br>
+     <br>
+
+                <ul style="list-style-type:disc">
+                    <li><a href="#" style="color:white;">About Us</a></li>
+                    <br>
+                    <br>
+                    <br>
+                    <li><a href="#" style="color:white;">Privacy Policy</a></li>
+                    <br>
+                    <br>
+                    <br>
+                    <li><a href="#" style="color:white;">Contact Us</a></li>
+                    <br>
+                    <br>
+                </ul>
+            </div>
+
+            <div class="column">
+
+
+<p>For Restaurants</p>
+<br><br>
+
+                <ul>
+                    <li><a href="#" style="color:white;">Partner With Us</a></li><br><br>
+                    <li><a href="#" style="color:white;">Apps For You</a></li><br><br>
+                    <li><a href="#" style="color:white;">Languages</a></li><br><br>
+
+                </ul>
+            </div>
+
+            <div class="column">
+
+
+<p>Social Links</p>
+<br><br>
+
+                <ul>
+
+                    <li><a href="#" class="fa fa-facebook" style="font-size:30px;"></a>
+                          <a href="#" class="fa fa-twitter" style="font-size:30px;"></a>
+                          <a href="#" class="fa fa-linkedin" style="font-size:30px;"></a>
+                          <a href="#" class="fa fa-youtube" style="font-size:30px;"></a>
+                          <a href="#" class="fa fa-instagram" style="font-size:30px;"></a></li>
+                </ul>
+            </div>
+
+</footer>
+
+</body>
+</html>
