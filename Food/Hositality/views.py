@@ -354,6 +354,18 @@ def removealld(request):
     card.delete()
     return redirect("dinein")
 
-
+def checkout(request):
+    user = request.user
+    cart = Cart.objects.filter(user=user)
+    amount = 0
+    q = 0
+    shipping = 40
+    for p in cart:
+        k = int(p.product.iprice)
+        q = q + p.quantity
+        value = p.quantity * k
+        amount = amount + value
+    totalamount = amount + 40
+    return render(request,"checkout.html",locals())
 
 

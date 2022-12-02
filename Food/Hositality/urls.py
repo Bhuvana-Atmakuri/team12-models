@@ -24,6 +24,7 @@ path('minuscartd/<int:product_id>',views.minus_cartd,name='minus_cartd'),
 path('removecartd/<int:remove_id>',views.remove_cartd,name='remove_cartd'),
 path('removealld',views.removealld,name='removealld'),
 path('dineto',views.dineto,name='dineto'),
+path('checkout',views.checkout,name='checkout'),
 ]
 
 urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
