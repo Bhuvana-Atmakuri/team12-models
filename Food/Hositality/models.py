@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
+import uuid
 
 
 class Hotels(models.Model):
@@ -22,13 +24,38 @@ class items(models.Model):
     item1=models.ImageField(upload_to='documents/')
     ititle=models.CharField(max_length=100)
     iprice=models.CharField(max_length=100)
+    modelid=models.IntegerField(blank=True, null=True)
     def str(self):
         return self.hotelname1
 
 
-User=get_user_model()
-class Customer(models.Model):
-    username=models.ForeignKey(User,on_delete=models.CASCADE)
-    name=models.TextField()
-    city=models.CharField(max_length=50)
-    zipcode=models.IntegerField()
+class Cart(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    product=models.ForeignKey(items,on_delete=models.CASCADE)
+    quantity=models.PositiveIntegerField(default=1)
+
+    @property
+    def total_cost(self):
+        return self.quantity*self.product.iprice
+
+class Dinein(models.Model):
+    hname=models.CharField(max_length=200)
+    Description=models.CharField(max_length=500)
+    img=models.ImageField(upload_to='documents/')
+    category=models.CharField(max_length=100)
+    location=models.CharField(max_length=150)
+    Timings=models.CharField(max_length=100)
+    id = models.BigAutoField(primary_key=True)
+    iprice = models.CharField(max_length=100)
+    def str(self):
+        return self.hname
+
+class dine1(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey(Dinein, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
+
+    @property
+    def total_cost(self):
+        return self.quantity * self.product.iprice
+

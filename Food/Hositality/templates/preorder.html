@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+     <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!--aos library-->
@@ -17,6 +18,8 @@
     <title>Welcome to Aaharam</title>
    {% load static %}
 <link rel='stylesheet' href="{% static 'preorder.css' %}">
+    <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
 <style>
 .slideshow-container {
   max-width: 1000px;
@@ -79,9 +82,25 @@
 #slider #next {
   right: 10px;
 }
-  </style>
-</head>
 
+  </style>
+
+</head>
+<style>
+    .badge:after{
+        content:attr(value);
+        font-size:12px;
+        color: #fff;
+        background: red;
+        border-radius:50%;
+        padding: 0 5px;
+        position:relative;
+        left:-8px;
+        top:-10px;
+        opacity:0.9;
+    }
+
+</style>
 <body id="bg" style="background-color:#FFFDD0;">
 
 <header>
@@ -92,6 +111,14 @@
         <li><a href="">Home</a></li>
         <li><a href="">Help</a></li>
         <li><a href=" ">Login/Signup</a></li>
+        <li>
+        <i class="fa badge fa-lg" value=5>&#xf290;</i>
+
+        </li>
+        <li>
+			 <a href="dinein"> <i class="fa badge fa-lg" value={{q}}>&#127869;</i></a>
+
+        </li>
     </ul>
     </nav>
 </div>
@@ -165,7 +192,7 @@
 
     </div>
     <div class="b123">
-        <div class="ima1234"><a href="orderin"><img src="{%static 'di.jpg' %}" style="border-radius:22px;"></a></div>
+        <div class="ima1234"><a href="dine"><img src="{%static 'di.jpg' %}" style="border-radius:22px;"></a></div>
 
     </div>
 </div>

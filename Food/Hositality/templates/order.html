@@ -6,6 +6,7 @@
      {% load static %}
     <script src="{% static 'cart.js' async%}" async></script>
     <link rel='stylesheet' href="{% static 'order.css' %}">
+    <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
     <!---font awesome cdn-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
@@ -13,6 +14,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!--custom css link-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="{%static 'script1.js' %}"></script>
 </head>
 <body style="background-color:#FFFDD0;">
  <header>
@@ -23,9 +25,11 @@
     <ul class="unordered">
         <li><a href="home">Home</a></li>
         <li><a href="con">Help</a></li>
-        <li class="cart"><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNav"  style="background-color:#89CFF0;height:50px;width:100px;">
-        <i class="fa fa-shopping-cart">&nbspCart <span style="font-size:20px;">&nbsp  0</span></i>
-      </button></li>
+        <li>
+            <a href='/cart'><i class="fa badge fa-lg" value={{q}}>&#xf290;</i></a>
+
+        </li>
+
     </ul>
     </nav>
 </div>
@@ -70,10 +74,12 @@
 
                  <h2>{{n.ititle}} &nbsp-</h2>
             <div class="price1">
-                 <h2 class="price"> ${{n.iprice}}</h2>
+                 <h2 class="price"> Rs.{{n.iprice}}</h2>
                 </div>
-
-               <button class=" btn-primary i1" type="button" style="height:60px;width:100%;color:black;font-size:30px;background-color:orange;">Add To Cart</button>
+               <form action="addto">
+                   <input type="hidden" name="prod_id" value="{{n.modelid}}">
+               <button value="{{n.modelid}}" class=" btn-primary i1"  style="height:60px;width:100%;color:black;font-size:30px;background-color:orange;" class="but">Add To Cart</button>
+                   </form>
             </div>
     </div>
 {%endif%}
@@ -85,21 +91,7 @@
  {%endfor%}
 
 
-    <section class="container1 content-section">
-            <h2 class="section-header">CART</h2>
-            <div class="cart-row">
-                <span class="cart-item cart-header cart-column">ITEM</span>
-                <span class="cart-price cart-header cart-column">PRICE</span>
-                <span class="cart-quantity cart-header cart-column">QUANTITY</span>
-            </div>
-            <div class="cart-items" id="cart-items">
-            </div>
-            <div class="cart-total">
-                <strong class="cart-total-title">Total</strong>
-                <span class="cart-total-price">$0</span>
-            </div>
-        <a href="payment" ><button class="btn btn-primary btn-purchase" type="button">PURCHASE</button></a>
-        </section>
+
 <footer style="background-color:#000033;width:2000px;" class="footer">
 <h3>Quick Links</h3>
     <br>

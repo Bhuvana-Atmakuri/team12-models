@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>add to cart</title>
+    {% load static %}
+
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,900" rel="stylesheet">
+<link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+    <link rel='stylesheet' href="{% static 'hello.css' %}">
+    <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+    <!---font awesome cdn-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+    <!--aos library-->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!--custom css link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'cart.css' %}">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="{% static 's1.js' %}"></script>
+
+</head>
+<body style="background-color:#FFFDD0;">
+ <header>
+
+<div class="container">
+    <a href="#" class="h1">Aaharam   &#127835</a>
+    <nav class="navigation bar">
+    <ul class="unordered">
+        <li><a href=" ">Home</a></li>
+        <li><a href="About">Recipies</a></li>
+        <li><a href="con">Cart</a></li>
+        <li><a href="lo2">Help</a></li>
+        <li><a href="lo1">Account</a></li>
+         <li>
+			 <a href="cart"> <i class="fa badge fa-lg" value={{q}}>&#xf290;</i></a>
+
+        </li>
+		<li>
+			 <a href="dinein"> <i class="fa badge fa-lg" value={{q}}>&#127869;</i></a>
+
+        </li>
+    </ul>
+    </nav>
+</div>
+</header>
+<br>
+ <br>
+ <div class="CartContainer">
+   	   <div class="Header"><br>
+   	   	<h3 class="Heading">Hotel Bookings</h3>
+		   {{message}}
+   	   	<h5 class="Action"><a href="removealld">Remove all</a></h5>
+   	   </div>
+        {%for item in cart%}
+   	   <div class="Cart-Items">
+   	   	  <div class="image-box">
+   	   	  	<img src="{{item.product.img.url}}" style="height:120px" />
+   	   	  </div>
+   	   	  <div class="about">
+   	   	  	<h1 class="ti">{{item.product.hname}}</h1>
+			  Description:{{item.product.Description}}
+		   Location:{{item.product.location}}
+		   Timings:{{item.product.Timings}}
+   	   	  </div>
+   	   	  <div class="counter">
+
+				<a class="btn" class="minus-cart" pid="{{item.product.id}}" id="product" href="minuscartd/{{item.product.id}}">-</a>
+
+   	   	  	<span class="count" id="quantity">{{item.quantity}}</span>
+
+			  <a class="btn plus-cart" pid="{{item.product.id}}" href="pluscartd/{{item.product.id}}" >+</a>
+
+
+   	   	  </div>
+
+
+
+   	   	  <div class="prices">
+   	   	  	<div class="amount" >Rs.{{item.product.iprice}}</div>
+   	   	  	<div class="remove"><u><a href="removecartd/{{item.product.id}}">Remove</a></u></div>
+   	   	  </div>
+   	   </div>
+
+   	   {%endfor%}
+   	 <hr>
+   	 <div class="checkout">
+
+
+   	 		<div class="Subtotal">Total Amount of:</div>
+		 <br>
+
+		 <div class="items">No.of.items&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp:&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp{{q}} tables</div>
+		 <br>
+		 <div id="amount">Amount &nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp&nbsp:&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp&nbsp &nbsp Rs.{{amount}}.00</div>
+		 <br>
+
+   	 	<div id="totalamount">
+			Total&nbsp &nbsp&nbsp   &nbsp&nbsp &nbsp&nbsp   &nbsp&nbsp &nbsp&nbsp   &nbsp&nbsp &nbsp&nbsp   &nbsp&nbsp    &nbsp:&nbsp &nbsp&nbsp   &nbsp &nbsp&nbsp &nbsp Rs.{{totalamount}}.00
+		</div>
+
+
+   	 <div>
+   	 <button class="button">Checkout</button></div>
+   </div>
+
+
+</div>
+
+</body>
+</html>

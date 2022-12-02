@@ -2,11 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Order Food</title>
-
+    <title>Good Morning</title>
      {% load static %}
-<link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
-    <link rel='stylesheet' href="{% static 'hello.css' %}">
+    <script src="{% static 'cart.js' async%}" async></script>
+    <link rel='stylesheet' href="{% static 'dine.css' %}">
     <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
     <!---font awesome cdn-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
@@ -15,78 +14,65 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!--custom css link-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    <script src="{%static 'script1.js' %}"></script>
 </head>
-
-<style>
-    .badge:after{
-        content:attr(value);
-        font-size:12px;
-        color: #fff;
-        background: red;
-        border-radius:50%;
-        padding: 0 5px;
-        position:relative;
-        left:-8px;
-        top:-10px;
-        opacity:0.9;
-    }
-
-</style>
 <body style="background-color:#FFFDD0;">
  <header>
 
 <div class="container">
-    <a href="#" class="h1">Aaharam   &#127835</a>
+    <b> <a href="#" class="h1">Aaharam   &#127835</a></b>
     <nav class="navigation bar">
     <ul class="unordered">
-        <li><a href=" ">Home</a></li>
-        <li><a href="About">Recipies</a></li>
-        <li><a href="con">Cart</a></li>
-        <li><a href="lo2">Help</a></li>
-        <li><a href="lo1">Account</a></li>
-         <li>
-             <a href="/cart"><i class="fa badge fa-lg" value={{q}}>&#xf290;</i></a>
-
-        </li>
+        <li><a href="home">Home</a></li>
+        <li><a href="con">Help</a></li>
         <li>
-			 <a href="dinein"> <i class="fa badge fa-lg" value={{q}}>&#127869;</i></a>
+            <a href='/cart'><i class="fa badge fa-lg" value={{q}}>&#xf290;</i></a>
 
         </li>
+      <li>
+            <a href='/dinein'><i class="fa badge fa-lg" value={{q}}>&#127869;</i></a>
 
+        </li>
 
     </ul>
     </nav>
 </div>
 </header>
 
-
-
-{%for c in cat%}
-<div class="bh2">
+ {%for c in cate%}
+<div class="bh2" style="margin-right:100px;">
   <h1 class="ho1" style="margin-top:100px;margin-bottom:20px;margin-left:30px;"> {{c}}</h1>
-<div class="bh1">
+<div class="bh1" >
+    <div class="in1" >
 
-    {%for n in no%}
-    {%if n.catego == c %}
-    <div class="v1" style="margin-right:100px;">
-        <div class="i1" >
-            <a href="hackathon/{{n.id}}" class="o1"><img style="height:300px;width:100%;" src="{{n.image.url}}"></a>
-        </div>
-        <br>
-        <br>
-        <div class="i1">
-            <h1 >{{n.hotelname}}</h1>
-        </div>
+    {%for n in alldine%}
+    {%if n.category == c %}
+    <div class="v1" style="margin-right:100px;margin-bottom:70px;">
+        <div class="i2" >
+            <img  style="height:290px;width:100%;" src="{{n.img.url}}">
+
+                 <h2>{{n.hname}} &nbsp-</h2>
+
+            <br>
+            <h2> {{n.location}}</h2>
+            <h3 style="color:black;"> {{n.Timings}}</h3>
+               <form action="dineto">
+                   <input type="hidden" name="prod_id" value="{{n.id}}">
+               <button value="{{n.id}}" class=" btn-primary i1"  style="height:50px;width:100%;color:black;font-size:30px;background-color:orange;" class="but">Book a Table</button>
+                   </form>
+            </div>
     </div>
- {%endif%}
-    {%endfor%}
-</div>
-</div>
+{%endif%}
+{%endfor%}
+   </div>
+    </div>
+    </div>
 
  {%endfor%}
 
-<footer style="background-color:#000033;" class="footer">
+
+
+<footer style="background-color:#000033;width:2000px;" class="footer">
 <h3>Quick Links</h3>
     <br>
 <br>
@@ -143,6 +129,6 @@
             </div>
 
 </footer>
-
+<script src="{% static 'animals.js' %}"></script>
 </body>
 </html>

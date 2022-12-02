@@ -1,6 +1,9 @@
 from operator import itemgetter
+
+from django.db.models import Q
 from django.http import HttpResponse
 from django.http import HttpResponse
+
 from email.message import EmailMessage
 from django.conf import settings
 from django.contrib.auth import login, authenticate, logout
@@ -16,16 +19,38 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
 from .tokens import Generate_Token
 from django.shortcuts import render, redirect
-from .models import Hotels, items
+from .models import Hotels, items,Cart,Dinein,dine1
+
+from django.http import JsonResponse
+import json
+from django.contrib import messages
+
+
+
 
 
 def home(request):
+    user=request.user
     allnoes = Hotels.objects.all()
     cate = list(Hotels.objects.values_list('catego', flat=True).distinct())
-    return render(request, "hello.html", {'no': allnoes, 'cat': cate})
+    cart = Cart.objects.filter(user=user)
+    amount = 0
+    q = 0
+    shipping = 40
+    for p in cart:
+        k = int(p.product.iprice)
+        q = q + p.quantity
+        value = p.quantity * k
+        amount = amount + value
+    totalamount = amount + 40
+    return render(request, "hello.html", {'no': allnoes, 'cat': cate,'q':q})
+
+
+
 
 
 def id(request, store_id):
+    user=request.user
     k=[]
     machine = Hotels.objects.get(id=store_id)
     hoti=items.objects.filter(hotelname1=machine.hotelname)
@@ -39,11 +64,26 @@ def id(request, store_id):
     inn = items.objects.all()
     #inn1=items.objects.get(iprice=30)
     hote = list(items.objects.values_list('category', flat=True).distinct())
-    return render(request, "order.html", {'inn': inn, 'hot': hote, 'si': store_id, 'ma': machine, 'k':k})
+    cart = Cart.objects.filter(user=user)
+    amount = 0
+    q = 0
+    shipping = 40
+    pr=0
+    for p in cart:
+        pr = int(p.product.iprice)
+        q = q + p.quantity
+        value = p.quantity * pr
+        amount = amount + value
+    totalamount = amount + 40
+    return render(request, "order.html", {'inn': inn, 'hot': hote, 'si': store_id, 'ma': machine, 'k':k,'q':q})
+
+
 
 
 def pre(request):
     return render(request,"preorder.html")
+
+
 
 def log(request):
     if request.method == "POST":
@@ -83,6 +123,7 @@ def log(request):
     return render(request, "signup.html")
 
 
+
 def activate(request, uidb64, token):
     try:
         uid = force_str(urlsafe_base64_decode(uidb64))
@@ -115,5 +156,204 @@ def sign(request):
     return render(request,"login.html")
 
 
+
+
 def login1(request):
     return render(request,"signup.html")
+
+
+
+def addto(request):
+    user=request.user
+    product_id=request.GET.get('prod_id')
+    product=items.objects.get(modelid=product_id)
+    Cart(user=user,product=product).save()
+    return redirect('cart')
+
+
+
+
+def cart(request):
+    user=request.user
+    cart=Cart.objects.filter(user=user)
+    amount=0
+    q=0
+    shipping=40
+    for p in cart:
+        k=int(p.product.iprice)
+        q=q+p.quantity
+        value=p.quantity*k
+        amount=amount+value
+    totalamount=amount+40
+    return render(request,'addtocart.html',locals())
+
+
+
+
+def plus_cart(request,product_id):
+    c = Cart.objects.get(product=product_id+2)
+    c.quantity += 1
+    c.save()
+    user = request.user
+    cart = Cart.objects.filter(user=user)
+    amount = 0
+    q = 0
+    for p in cart:
+        k = int(p.product.iprice)
+        q = q + p.quantity
+        value = p.quantity * k
+        amount = amount + value
+    totalamount = amount + 40
+
+    data = {
+
+        'amount': amount,
+        'totalamount': totalamount
+
+    }
+
+    return redirect('cart')
+
+
+
+
+def minus_cart(request,product_id):
+    shipping = 0
+    c = Cart.objects.get(product=product_id+2)
+    if(c.quantity>0):
+        c.quantity -= 1
+        c.save()
+        user = request.user
+        cart = Cart.objects.filter(user=user)
+        amount = 0
+        q = 0
+
+        for p in cart:
+              k = int(p.product.iprice)
+              q = q + p.quantity
+              value = p.quantity * k
+              amount = amount + value
+        totalamount = amount + 40
+        return redirect('cart')
+    else:
+        return redirect('cart')
+
+
+
+
+def remove_cart(request,remove_id):
+
+    card = Cart.objects.get(product=remove_id+2)
+    card.delete()
+    return redirect("cart")
+
+
+
+def removeall(request):
+    card = Cart.objects.all()
+    card.delete()
+    return redirect("cart")
+
+
+def dine(request):
+    user = request.user
+    alldine = Dinein.objects.all()
+    cate = list(Dinein.objects.values_list('category', flat=True).distinct())
+    cart = dine1.objects.filter(user=user)
+    amount = 0
+    q = 0
+    for p in cart:
+        k = int(p.product.iprice)
+        q = q + p.quantity
+        value = p.quantity * k
+        amount = amount + value
+    totalamount = amount
+    return render(request, "dine.html", locals())
+
+def dineto(request):
+    user=request.user
+    product_id=request.GET.get('prod_id')
+    product=Dinein.objects.get(id=product_id)
+    dine1(user=user,product=product).save()
+    return redirect('dinein')
+
+def dinein(request):
+    user = request.user
+    cart = dine1.objects.filter(user=user)
+    amount = 0
+    q = 0
+    for p in cart:
+        k = int(p.product.iprice)
+        q = q + p.quantity
+        value = p.quantity * k
+        amount = amount + value
+    totalamount = amount
+    return render(request, 'dinein.html', locals())
+
+def plus_cartd(request,product_id):
+    c = dine1.objects.get(product=product_id)
+    c.quantity += 1
+    c.save()
+    user = request.user
+    cart = dine1.objects.filter(user=user)
+    amount = 0
+    q = 0
+    for p in cart:
+        k = int(p.product.iprice)
+        q = q + p.quantity
+        value = p.quantity * k
+        amount = amount + value
+    totalamount = amount
+
+    data = {
+
+        'amount': amount,
+        'totalamount': totalamount
+
+    }
+
+    return redirect('dinein')
+
+
+
+
+def minus_cartd(request,product_id):
+    shipping = 0
+    c = dine1.objects.get(product=product_id)
+    if(c.quantity>0):
+        c.quantity -= 1
+        c.save()
+        user = request.user
+        cart = dine1.objects.filter(user=user)
+        amount = 0
+        q = 0
+
+        for p in cart:
+              k = int(p.product.iprice)
+              q = q + p.quantity
+              value = p.quantity * k
+              amount = amount + value
+        totalamount = amount + 40
+        return redirect('dinein')
+    else:
+        return redirect('dinein')
+
+
+
+
+def remove_cartd(request,remove_id):
+
+    card = dine1.objects.get(product=remove_id)
+    card.delete()
+    return redirect("dinein")
+
+
+
+def removealld(request):
+    card = dine1.objects.all()
+    card.delete()
+    return redirect("dinein")
+
+
+
+
