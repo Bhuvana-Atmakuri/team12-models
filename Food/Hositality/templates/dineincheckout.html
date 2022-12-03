@@ -36,7 +36,7 @@
                                 <h3>You can schedule your order upto 24 hours</h3>
                                 <input type="datetime-local" id="meeting-time" name="meeting-time" value="2022-12-03T19:30" min="2022-12-04T00:00" max="2022-12-05T00:00"  required>
                                 <span style="font-size:30px;color:#8A2BE2">Shipping Address*:</span>
-                                <textarea id="w3review" name="w3review" rows="4" cols="50"  required>Enter your address here...</textarea>
+                                <textarea id="w3review" name="w3review" rows="4" cols="50"  required></textarea>
                             </form>
                         </div>
                     </div>
@@ -48,10 +48,10 @@
                             <p style="font-size:26px;">{{q}} items</p>
                             {% for item in cart %}
                             <div class="row item">
-                                <div class="col-4 align-self-center"><img class="img-fluid" src="{{item.product.item1.url}}" style="height:100px;width:100px;display: block; margin-left: auto; margin-right: auto;"></div>
+                                <div class="col-4 align-self-center"><img class="img-fluid" src="{{item.product.img.url}}" style="height:100px;width:100px;display: block; margin-left: auto; margin-right: auto;"></div>
                                 <div class="col-8">
                                     <div class="row" style="font-size:30px;"><b>Rs. {{item.product.iprice}}</b></div>
-                                    <div class="row text-muted" style="font-size:30px;text-align:center;">{{item.product.ititle}}</div>
+                                    <div class="row text-muted" style="font-size:30px;text-align:center;">{{item.product.hname}}</div>
                                     <div class="row" style="font-size:30px;">Qty:{{item.quantity}}</div>
                                 </div>
                             </div>
@@ -96,7 +96,7 @@
    "handler":function(response){
    console.log("success")
 
-    window.location.href='http://localhost:8000/paymentdone'
+    window.location.href='http://localhost:8000/paymentdone1'
   }
   };
   var rzp1 = new Razorpay(options);

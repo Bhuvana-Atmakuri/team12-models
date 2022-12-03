@@ -25,6 +25,11 @@ path('removecartd/<int:remove_id>',views.remove_cartd,name='remove_cartd'),
 path('removealld',views.removealld,name='removealld'),
 path('dineto',views.dineto,name='dineto'),
 path('checkout',views.checkout,name='checkout'),
+path('paymentdone', views.paymentdone, name='paymentdone'),
+path('dineinch',views.dineinch,name='dineinch'),
+path('paymentdone1', views.paymentdone1, name='paymentdone1'),
+path('aboutus', views.aboutus, name='aboutus'),
+path('hackathon/aboutus', views.aboutus, name='aboutus'),
 ]
 
 urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

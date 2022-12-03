@@ -1,9 +1,10 @@
 from operator import itemgetter
 
+
 from django.db.models import Q
 from django.http import HttpResponse
 from django.http import HttpResponse
-
+import razorpay
 from email.message import EmailMessage
 from django.conf import settings
 from django.contrib.auth import login, authenticate, logout
@@ -17,9 +18,11 @@ from django.core.mail import send_mail, EmailMessage
 from django.contrib.auth.models import User
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
+from razorpay.resources import payment
+
 from .tokens import Generate_Token
 from django.shortcuts import render, redirect
-from .models import Hotels, items,Cart,Dinein,dine1
+from .models import *
 
 from django.http import JsonResponse
 import json
@@ -75,13 +78,50 @@ def id(request, store_id):
         value = p.quantity * pr
         amount = amount + value
     totalamount = amount + 40
-    return render(request, "order.html", {'inn': inn, 'hot': hote, 'si': store_id, 'ma': machine, 'k':k,'q':q})
+
+    user = request.user
+    cart123 = dine1.objects.filter(user=user)
+    amount = 0
+    qua1 = 0
+    for p in cart123:
+        k = int(p.product.iprice)
+        qua1 = qua1 + p.quantity
+        value = p.quantity * k
+        amount = amount + value
+    totalamount = amount
+    return render(request, "order.html", {'inn': inn, 'hot': hote, 'si': store_id, 'ma': machine, 'k':k,'q':q,'qua':qua1})
 
 
 
 
 def pre(request):
-    return render(request,"preorder.html")
+    user = request.user
+    allnoes = Hotels.objects.all()
+    cate = list(Hotels.objects.values_list('catego', flat=True).distinct())
+    cart = Cart.objects.filter(user=user)
+    amount = 0
+    q = 0
+    shipping = 40
+    for p in cart:
+        k = int(p.product.iprice)
+        q = q + p.quantity
+        value = p.quantity * k
+        amount = amount + value
+    totalamount = amount + 40
+
+    user = request.user
+    alldine = Dinein.objects.all()
+    cate = list(Dinein.objects.values_list('category', flat=True).distinct())
+    cart = dine1.objects.filter(user=user)
+    amount = 0
+    qua = 0
+    for p in cart:
+        k = int(p.product.iprice)
+        qua = qua + p.quantity
+        value = p.quantity * k
+        amount = amount + value
+    totalamount = amount
+    return render(request,"preorder.html",locals())
 
 
 
@@ -366,6 +406,73 @@ def checkout(request):
         value = p.quantity * k
         amount = amount + value
     totalamount = amount + 40
+    razoramount=int(totalamount*100)
+    client = razorpay.Client(auth=(settings.RAZOR_KEY_ID,settings.RAZOR_KEY_SECRET))
+    data={"amount":razoramount,"currency":"INR","receipt":"order_rcptid_16"}
+    payment_response=client.order.create(data=data)
+    print(payment_response)
+    order_id = payment_response['id']
+    order_status = payment_response['status']
+    if order_status == 'created':
+        payment=Payment(
+            user=user,
+            amount=totalamount,
+            razorpay_order_id=order_id,
+            razorpay_payment_status=order_status,
+        )
+        payment.paid = True
+        payment.save()
     return render(request,"checkout.html",locals())
 
 
+def paymentdone(request):
+    payment_id = request.GET.get('payment_id')
+    order_id = request.GET.get('order_id')
+    print(order_id)
+    cust_id = request.GET.get('cust_id')
+    user=request.user
+    k="Your payment is successfull"
+    razorpay_payment_id = payment_id
+    return render(request,"addtocart.html",{"message":k})
+
+def dineinch(request):
+    user = request.user
+    cart = dine1.objects.filter(user=user)
+    amount = 0
+    q = 0
+    shipping = 40
+    for p in cart:
+        k = int(p.product.iprice)
+        q = q + p.quantity
+        value = p.quantity * k
+        amount = amount + value
+    totalamount = amount + 40
+    razoramount=int(totalamount*100)
+    client = razorpay.Client(auth=(settings.RAZOR_KEY_ID,settings.RAZOR_KEY_SECRET))
+    data={"amount":razoramount,"currency":"INR","receipt":"order_rcptid_16"}
+    payment_response=client.order.create(data=data)
+    print(payment_response)
+    order_id = payment_response['id']
+    order_status = payment_response['status']
+    if order_status == 'created':
+        payment=Payment(
+            user=user,
+            amount=totalamount,
+            razorpay_order_id=order_id,
+            razorpay_payment_status=order_status,
+        )
+        payment.paid = True
+        payment.save()
+    return render(request,"dineincheckout.html",locals())
+
+def paymentdone1(request):
+    payment_id = request.GET.get('payment_id')
+    order_id = request.GET.get('order_id')
+    print(order_id)
+    cust_id = request.GET.get('cust_id')
+    user=request.user
+    k="Your payment is successfull"
+    razorpay_payment_id=payment_id
+    return render(request,"addtocart.html",{"message":k})
+def aboutus(request):
+    return render(request,'aboutus.html')

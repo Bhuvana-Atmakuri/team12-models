@@ -59,7 +59,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'Food.urls'
-
+RAZOR_KEY_ID = "rzp_test_ymtoQfFFlVdy6s"
+RAZOR_KEY_SECRET = "F4yEAxBJtYx7vpFMAbPMPZB3"
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
