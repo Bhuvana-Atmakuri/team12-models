@@ -1,5 +1,6 @@
 from django.conf.urls.static import static
-from django.urls import path
+from django.urls import path, include
+from django.contrib.auth import views as auth_views
 
 from . import views
 from django.conf import settings
@@ -30,6 +31,7 @@ path('dineinch',views.dineinch,name='dineinch'),
 path('paymentdone1', views.paymentdone1, name='paymentdone1'),
 path('aboutus', views.aboutus, name='aboutus'),
 path('hackathon/aboutus', views.aboutus, name='aboutus'),
+
 ]
 
 urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

@@ -159,7 +159,7 @@ def log(request):
         email.fail_silently = True
         email.send()
 
-        return redirect("pre")
+        return redirect("/ko")
     return render(request, "signup.html")
 
 
@@ -499,3 +499,4 @@ def paymentdone1(request):
     return render(request,"addtocart.html",{"message":k})
 def aboutus(request):
     return render(request,'aboutus.html')
+
