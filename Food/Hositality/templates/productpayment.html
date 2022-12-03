@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Good Morning</title>
+    <title>Order Food</title>
+
      {% load static %}
-    <script src="{% static 'cart.js' async%}" async></script>
-    <link rel='stylesheet' href="{% static 'order.css' %}">
+<link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+    <link rel='stylesheet' href="{% static 'hello.css' %}">
     <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
     <!---font awesome cdn-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
@@ -16,81 +17,67 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
+
+<style>
+    .badge:after{
+        content:attr(value);
+        font-size:12px;
+        color: #fff;
+        background: red;
+        border-radius:50%;
+        padding: 0 5px;
+        position:relative;
+        left:-8px;
+        top:-10px;
+        opacity:0.9;
+    }
+
+</style>
 <body style="background-color:#FFFDD0;">
  <header>
 
 <div class="container">
-    <b> <a href="#" class="h1">Aaharam   &#127835</a></b>
+    <a href="#" class="h1">Aaharam   &#127835</a>
     <nav class="navigation bar">
     <ul class="unordered">
+        <li><a href="pre">Home</a></li>
 
-        <li>
-            <a href='/cart'><i class="fa fa-lg" style="font-size:30px;">&#xf290;</i></a>
-
-        </li>
-        <li>
-			 <a href="/dinein"> <i class="fa  fa-lg" style="font-size:42px;">&#127869;</i></a>
+         <li>
+             <a href="#"><i class="fa fa-lg" >&#xf290;</i></a>
 
         </li>
+        <li>
+			 <a href="#"> <i class="fa  fa-lg"  style="font-size:40px;">&#127869;</i></a>
+
+        </li>
+
+
     </ul>
     </nav>
 </div>
 </header>
 
- <div class="f1">
-     <div class="f2">
-         <div class="fi1">
-             <img src="{{ma.image.url}}" class="i2" style="margin-left:30px;margin-top:30px;height:180px;wight:200px;">
-         </div>
-         <div class="images">
-             <h2 class="hea">{{ma.hotelname}}</h2>
-             <br>
-             <h1 class="hea1">{{ma.tagline}}</h1>
-             <br>
-              <h1 class="hea1">{{ma.timi}}</h1>
-             <br>
-              <h1 class="hea1">{{ma.address}}</h1>
-         </div>
-     </div>
- </div>
- <b> <h2 class="head">Menu</h2></b>
+<br>
  <br>
  <br>
  <br>
- {%for c in hot%}
- {% if c in k %}
-<div class="bh2" style="margin-right:100px;">
-  <h1 class="ho1" style="margin-top:100px;margin-bottom:20px;margin-left:30px;"> {{c}}</h1>
-<div class="bh1" >
-    <div class="in1" >
-
-    {%for n in inn%}
-    {%if n.category == c and  n.hotelname1 == ma.hotelname %}
-    <div class="v1" style="margin-right:100px;margin-bottom:70px;">
-        <div class="i2" >
-            <img  style="height:290px;width:100%;" src="{{n.item1.url}}">
-
-                 <h2>{{n.ititle}} &nbsp-</h2>
-            <div class="price1">
-                 <h2 class="price"> Rs.{{n.iprice}}</h2>
-                </div>
-               <form action="addto">
-                   <input type="hidden" name="prod_id" value="{{n.modelid}}">
-               <button value="{{n.modelid}}" class=" btn-primary i1"  style="height:60px;width:100%;color:black;font-size:30px;background-color:orange;" class="but">Add To Cart</button>
-                   </form>
-            </div>
-    </div>
-{%endif%}
-{%endfor%}
-   </div>
-    </div>
-    </div>
-{%endif%}
+ <br>
+ <br>
+<h1 class="ho3" style="text-align:center">Orders Placed:</h1>
+{%for c in p%}
+<div>
+  <h1 class="ho3"> User = {{c.user}}</h1>
+ <h1> Amount = {{c.amount}}</h1>
+ <h1>Order_id = {{c.razorpay_order_id}}</h1>
+    <h1>Payment-status = {{c.paid}}</h1>
+</div>
+-----------------------------------------------------------------------------------------------------------
+<br>
+ <br>
+ <br>
  {%endfor%}
 
-
-
-<footer style="background-color:#000033;width:2000px;" class="footer">
+<footer style="background-color:#000033;" class="footer">
 <h3>Quick Links</h3>
     <br>
 <br>
@@ -147,6 +134,6 @@
             </div>
 
 </footer>
-<script src="{% static 'animals.js' %}"></script>
+
 </body>
 </html>

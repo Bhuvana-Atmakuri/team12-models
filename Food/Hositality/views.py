@@ -67,29 +67,8 @@ def id(request, store_id):
     inn = items.objects.all()
     #inn1=items.objects.get(iprice=30)
     hote = list(items.objects.values_list('category', flat=True).distinct())
-    cart = Cart.objects.filter(user=user)
-    amount = 0
-    q = 0
-    shipping = 40
-    pr=0
-    for p in cart:
-        pr = int(p.product.iprice)
-        q = q + p.quantity
-        value = p.quantity * pr
-        amount = amount + value
-    totalamount = amount + 40
 
-    user = request.user
-    cart123 = dine1.objects.filter(user=user)
-    amount = 0
-    qua1 = 0
-    for p in cart123:
-        k = int(p.product.iprice)
-        qua1 = qua1 + p.quantity
-        value = p.quantity * k
-        amount = amount + value
-    totalamount = amount
-    return render(request, "order.html", {'inn': inn, 'hot': hote, 'si': store_id, 'ma': machine, 'k':k,'q':q,'qua':qua1})
+    return render(request, "order.html", {'inn': inn, 'hot': hote, 'si': store_id, 'ma': machine, 'k':k})
 
 
 
@@ -159,7 +138,7 @@ def log(request):
         email.fail_silently = True
         email.send()
 
-        return redirect("/ko")
+        return redirect("sign")
     return render(request, "signup.html")
 
 
@@ -456,7 +435,8 @@ def paymentdone(request):
     user=request.user
     k="Your payment is successfull"
     razorpay_payment_id = payment_id
-    return render(request,"addtocart.html",{"message":k})
+    p = Payment.objects.all()
+    return render(request, "productpayment.html", locals())
 
 def dineinch(request):
     user = request.user
@@ -500,3 +480,6 @@ def paymentdone1(request):
 def aboutus(request):
     return render(request,'aboutus.html')
 
+def pr(request):
+    p = Payment.objects.all()
+    return render(request,'productpayment.html',locals())

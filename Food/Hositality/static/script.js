@@ -63,6 +63,29 @@ function validateEmail(){
     return false;
   }
 }
+function validatephone(){
+  var phno = document.forms['registrationform']['mobileno'].value;
+  if (isNaN(phno)) {
+           document.getElementById("mobileno").style.border = "2px solid red";
+    document.getElementById("errorphoneno").style.color = "red";
+     document.getElementById("mobileno").value="";
+          document.getElementById("errorphoneno").innerHTML ="Please enter only Numeric value";
+          return false;
+      }
+  if( phno=='' ||  phno.length<10 || phno.length>10){
+    document.getElementById("mobileno").style.border = "2px solid red";
+    document.getElementById("errorphoneno").style.color = "red";
+     document.getElementById("mobileno").value="";
+    document.getElementById("errorphoneno").innerHTML="mobile number must contain only 10 digits";
+    return false;
+  }
+  else{
+  document.getElementById("mobileno").style.border = "2px solid green";
+  document.getElementById("errorphoneno").style.color = "green";
+  document.getElementById("errorphoneno").innerHTML="phone number is of right format";
+    return true;
+  }
+}
 function validateall(){
     if(validateUserName()  & validateEmail() & validatephone() & validatePassword()){
         return true;
