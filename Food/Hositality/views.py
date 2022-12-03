@@ -231,61 +231,84 @@ def cart(request):
 
 
 def plus_cart(request,product_id):
-    c = Cart.objects.get(product=product_id+2)
-    c.quantity += 1
-    c.save()
-    user = request.user
-    cart = Cart.objects.filter(user=user)
-    amount = 0
-    q = 0
-    for p in cart:
-        k = int(p.product.iprice)
-        q = q + p.quantity
-        value = p.quantity * k
-        amount = amount + value
-    totalamount = amount + 40
-
-    data = {
-
-        'amount': amount,
-        'totalamount': totalamount
-
-    }
-
-    return redirect('cart')
+    if(product_id<10):
+       c = Cart.objects.get(product=product_id+2)
+       c.quantity += 1
+       c.save()
+       user = request.user
+       cart = Cart.objects.filter(user=user)
+       amount = 0
+       q = 0
+       for p in cart:
+           k = int(p.product.iprice)
+           q = q + p.quantity
+           value = p.quantity * k
+           amount = amount + value
+       totalamount = amount + 40
+       return redirect('cart')
+    else:
+            c = Cart.objects.get(product=product_id + 3)
+            c.quantity += 1
+            c.save()
+            user = request.user
+            cart = Cart.objects.filter(user=user)
+            amount = 0
+            q = 0
+            for p in cart:
+                k = int(p.product.iprice)
+                q = q + p.quantity
+                value = p.quantity * k
+                amount = amount + value
+            totalamount = amount + 40
+            return redirect('cart')
 
 
 
 
 def minus_cart(request,product_id):
     shipping = 0
-    c = Cart.objects.get(product=product_id+2)
-    if(c.quantity>0):
+    if (product_id < 10):
+        c = Cart.objects.get(product=product_id + 2)
         c.quantity -= 1
         c.save()
         user = request.user
         cart = Cart.objects.filter(user=user)
         amount = 0
         q = 0
-
         for p in cart:
-              k = int(p.product.iprice)
-              q = q + p.quantity
-              value = p.quantity * k
-              amount = amount + value
+            k = int(p.product.iprice)
+            q = q + p.quantity
+            value = p.quantity * k
+            amount = amount + value
         totalamount = amount + 40
         return redirect('cart')
     else:
+        c = Cart.objects.get(product=product_id + 3)
+        c.quantity -= 1
+        c.save()
+        user = request.user
+        cart = Cart.objects.filter(user=user)
+        amount = 0
+        q = 0
+        for p in cart:
+            k = int(p.product.iprice)
+            q = q + p.quantity
+            value = p.quantity * k
+            amount = amount + value
+        totalamount = amount + 40
         return redirect('cart')
-
 
 
 
 def remove_cart(request,remove_id):
-
-    card = Cart.objects.get(product=remove_id+2)
-    card.delete()
-    return redirect("cart")
+   if(remove_id<10):
+      card = Cart.objects.get(product=remove_id+2)
+      card.delete()
+      return redirect("cart")
+   else:
+         card = Cart.objects.get(product=remove_id + 3)
+         card.delete()
+         return redirect("cart")
 
 
 
@@ -446,7 +469,7 @@ def dineinch(request):
         q = q + p.quantity
         value = p.quantity * k
         amount = amount + value
-    totalamount = amount + 40
+    totalamount = amount + 20
     razoramount=int(totalamount*100)
     client = razorpay.Client(auth=(settings.RAZOR_KEY_ID,settings.RAZOR_KEY_SECRET))
     data={"amount":razoramount,"currency":"INR","receipt":"order_rcptid_16"}

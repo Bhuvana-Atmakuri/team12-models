@@ -32,10 +32,10 @@
                                 <input type="text" placeholder="Linda Williams"  required>
                                 <span style="font-size:30px;color:#8A2BE2">Phone Number*:</span>
                                 <input type="text" placeholder="9999999999"  required>
-                                <span style="font-size:30px;color:#8A2BE2">Schedule your order*:</span>
+                                <span style="font-size:30px;color:#8A2BE2">Schedule your Booking*:</span>
                                 <h3>You can schedule your order upto 24 hours</h3>
                                 <input type="datetime-local" id="meeting-time" name="meeting-time" value="2022-12-03T19:30" min="2022-12-04T00:00" max="2022-12-05T00:00"  required>
-                                <span style="font-size:30px;color:#8A2BE2">Shipping Address*:</span>
+                                <span style="font-size:30px;color:#8A2BE2">Customize your table*:</span>
                                 <textarea id="w3review" name="w3review" rows="4" cols="50"  required></textarea>
                             </form>
                         </div>
@@ -44,7 +44,7 @@
 
                     <div class="col-md-5">
                         <div class="right border">
-                            <div class="header" style="text-align:center;font-size: 40px;font-family: Copperplate, Papyrus, fantasy;">Order Summary</div>
+                            <div class="header" style="text-align:center;font-size: 40px;font-family: Copperplate, Papyrus, fantasy;">Booking Summary</div>
                             <p style="font-size:26px;">{{q}} items</p>
                             {% for item in cart %}
                             <div class="row item">
@@ -63,8 +63,8 @@
                                 <div class="col text-right" style="font-size:25px;">Rs.{{amount}}.00</div>
                             </div>
                             <div class="row lower">
-                                <div class="col text-left" style="font-size:30px;">Delivery Charge:</div>
-                                <div class="col text-right" style="font-size:25px;">Rs.40.00</div>
+                                <div class="col text-left" style="font-size:30px;">Convinience Charge:</div>
+                                <div class="col text-right" style="font-size:25px;">Rs.20.00</div>
                             </div>
                             <div class="row lower">
                                 <div class="col text-left" style="font-size:30px;"><b>Total to pay</b></div>
